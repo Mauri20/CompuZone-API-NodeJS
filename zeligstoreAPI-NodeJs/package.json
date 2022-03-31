@@ -1,0 +1,35 @@
+{
+  "name": "zeligstoreapi-nodejs",
+  "version": "2.0.0",
+  "description": "This API REST is about the ZeligStore, based on NodeJs and another softwares.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r esm src/main.js",
+    "start": "node esm src/main.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "dotenv": "^14.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.10",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.2",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "keywords": [
+    "ZeligStore",
+    "NodeJS",
+    "React"
+  ],
+  "author": "ZeligStore Oficial SV",
+  "license": "ISC"
+}
