@@ -1,3 +1,7 @@
-// This comment is just to verify the correct working!, you can delete it.
+import 'dotenv/config';
+import routes from './routes';
+import initializeServer from './services/server';
 
-console.log('Si funciona');
+const startServer = initializeServer(routes);
+
+export default startServer;
