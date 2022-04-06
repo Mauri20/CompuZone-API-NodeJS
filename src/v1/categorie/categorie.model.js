@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
-const modelName = 'categorie'; // plural
+const modelName = 'categories'; // plural
 
 const schema = new Schema(
   {
     categorieName: {
       type: String,
-      isrequired: true
+      isRequired: true
+    },
+    created_at: {
+      type: Date,
+      default: Date.now,
     }
   },
   {
