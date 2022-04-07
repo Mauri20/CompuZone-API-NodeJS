@@ -8,7 +8,7 @@ y otras más herramientas de desarrollo actuales y eficientes.
 ## _Some steps you have to do before to start_
 
 1. Clonar el repositorio mediante el comando **git clone https://github.com/AndresC-O/ZeligStore-API-NodeJS.git**, o directamente desde GitHub Desktop, **it's up to you!**
-2. Ejecutar el comando en la terminal, especificamente en la dirección del proyecto: **npm install**
+2. Ejecutar el comando en la terminal, especificamente en la dirección del proyecto: **npm install**, o tambien **yarn install**
 3. Para asegurarnos que se ha instalado correctamente y que este funcione, podemos ejecutar mediante consola el siguiente comando: **npm run dev**
 
 ## ⚠️Other Information
