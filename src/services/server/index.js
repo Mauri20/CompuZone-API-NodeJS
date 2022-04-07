@@ -17,7 +17,7 @@ const initializeServer = async (routes) => {
 
   // create express app
   app.listen(port, () => {
-    console.log(`Example app listening on http://localhost:${port}`);
+    console.log(`> ZeligStore-API-NodeJS is listening on http://localhost:${port}`);
   });
 };
 

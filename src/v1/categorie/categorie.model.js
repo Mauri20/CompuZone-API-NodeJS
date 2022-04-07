@@ -7,7 +7,12 @@ const schema = new Schema(
   {
     categorieName: {
       type: String,
-      isRequired: true
+      required: true
+    },
+    status: {
+      type: String,
+      enum: ['active', 'inactive', 'deleted'],
+      default: 'active',
     },
     created_at: {
       type: Date,
