@@ -5,9 +5,7 @@ export const getAllCategories = async (req, res) => {
   const { status = 'active' } = req.query;
 
   try {
-    const query = CategorieModel.find({ status })
-      .skip(offset)
-      .limit(limit);
+    const query = CategorieModel.find({ status }).skip(offset).limit(limit);
 
     const data = await query.exec();
     return res.status(200).json(data);
@@ -29,7 +27,9 @@ export const createCategorie = async (req, res) => {
   }
 
   try {
-    const data = await CategorieModel.create({ categorieName: body.categorieName });
+    const data = await CategorieModel.create({
+      categorieName: body.categorieName,
+    });
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({
@@ -92,13 +92,11 @@ export const deleteCategoriePermantly = async (req, res) => {
   const { idCategorie } = params;
 
   try {
-    const data = await CategorieModel.deleteOne(
-      { _id: idCategorie }
-    );
+    const data = await CategorieModel.deleteOne({ _id: idCategorie });
 
     return res.status(200).json({
       ...data,
-      status: 'deleted'
+      status: 'deleted',
     });
   } catch (error) {
     return res.status(500).json({

@@ -7,7 +7,7 @@ const schema = new Schema(
   {
     categorieName: {
       type: String,
-      required: true
+      required: true,
     },
     status: {
       type: String,
@@ -17,7 +17,7 @@ const schema = new Schema(
     created_at: {
       type: Date,
       default: Date.now,
-    }
+    },
   },
   {
     versionKey: false,

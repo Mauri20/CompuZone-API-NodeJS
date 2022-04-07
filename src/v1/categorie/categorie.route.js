@@ -5,7 +5,7 @@ import {
   createCategorie,
   updateCategorie,
   deleteCategorie,
-  deleteCategoriePermantly
+  deleteCategoriePermantly,
 } from './categorie.controller';
 
 const router = express.Router();
