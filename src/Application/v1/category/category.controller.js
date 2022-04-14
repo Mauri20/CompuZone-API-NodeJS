@@ -1,4 +1,4 @@
-import CategorieModel from './categorie.model';
+import CategorieModel from './category.model';
 
 export const getAllCategories = async (req, res) => {
   const { offset, limit } = req.params;
@@ -32,9 +32,10 @@ export const createCategorie = async (req, res) => {
     });
     return res.status(200).json(data);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt create the categorie.',
+      message: '> It couldnt create the category.',
     });
   }
 };
@@ -60,7 +61,7 @@ export const updateCategorie = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt update the categorie.',
+      message: '> It couldnt update the category.',
     });
   }
 };
@@ -82,7 +83,7 @@ export const deleteCategorie = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt delete this categorie.',
+      message: '> It couldnt delete this category.',
     });
   }
 };
@@ -101,7 +102,7 @@ export const deleteCategoriePermantly = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt delete this categorie.',
+      message: '> It couldnt delete this category.',
     });
   }
 };

@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import getModelName from 'Utils/getModelName';
 
 const { Schema } = mongoose;
-const modelName = 'categories'; // plural
+const { singularName, pluralName } = getModelName('categories');
 
 const schema = new Schema(
   {
@@ -35,4 +36,5 @@ schema.set('toJSON', {
 });
 
 // rename name Example to singular Model
-export default mongoose.models.Categorie || mongoose.model(modelName, schema);
+export default mongoose.models[singularName] ||
+  mongoose.model(pluralName, schema);
