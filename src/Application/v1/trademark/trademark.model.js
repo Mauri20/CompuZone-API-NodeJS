@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 import getModelName from 'Utils/getModelName';
 
 const { Schema } = mongoose;
-const { singularName, pluralName } = getModelName('categories');
+const { singularName, pluralName } = getModelName('trademarks');
 
 const schema = new Schema(
   {
-    categorieName: {
+    trademarkName: {
       type: String,
       required: true,
     },
@@ -31,6 +31,7 @@ schema.set('toJSON', {
   versionKey: false,
   transform(_doc, ret) {
     // eslint-disable-next-line no-param-reassign,no-underscore-dangle
+    ret.id = ret._id;
     delete ret._id;
   },
 });

@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 import getModelName from 'Utils/getModelName';
 
 const { Schema } = mongoose;
-const { singularName, pluralName } = getModelName('categories');
+const { singularName, pluralName } = getModelName('models');
 
 const schema = new Schema(
   {
-    categorieName: {
+    modelName: {
       type: String,
       required: true,
     },
@@ -18,6 +18,10 @@ const schema = new Schema(
     created_at: {
       type: Date,
       default: Date.now,
+    },
+    trademark: {
+      type: Schema.Types.ObjectId,
+      ref: 'trademarks',
     },
   },
   {
@@ -31,6 +35,7 @@ schema.set('toJSON', {
   versionKey: false,
   transform(_doc, ret) {
     // eslint-disable-next-line no-param-reassign,no-underscore-dangle
+    ret.id = ret._id;
     delete ret._id;
   },
 });
