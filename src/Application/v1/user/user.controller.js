@@ -30,7 +30,9 @@ export const createUser = async (req, res) => {
     });
   }
   try {
-    const query = UserModel.findOne({ user: body.user, status }).skip(offset).limit(limit);
+    const query = UserModel.findOne({ user: body.user, status })
+      .skip(offset)
+      .limit(limit);
     const data_ = await query.exec();
 
     if (data_ !== null) {
@@ -67,7 +69,9 @@ export const login = async (req, res) => {
     });
   }
   try {
-    const query = UserModel.findOne({ user: body.user, status }).skip(offset).limit(limit);
+    const query = UserModel.findOne({ user: body.user, status })
+      .skip(offset)
+      .limit(limit);
     const data = await query.exec();
     if (data !== null) {
       // eslint-disable-next-line consistent-return
@@ -82,14 +86,23 @@ export const login = async (req, res) => {
             } else if (data.userType === '0') {
               rolType = 'common';
             }
-            return res.status(200).json({ message: 'The user has been found successfully.', rol: rolType });
+            return res
+              .status(200)
+              .json({
+                message: 'The user has been found successfully.',
+                rol: rolType,
+              });
           }
 
-          return res.status(400).json({ message: 'Please verify your data and do it again.' });
+          return res
+            .status(400)
+            .json({ message: 'Please verify your data and do it again.' });
         }
       });
     } else {
-      return res.status(400).json({ message: 'This user doesnt exist, probably has been deleted' });
+      return res
+        .status(400)
+        .json({ message: 'This user doesnt exist, probably has been deleted' });
     }
   } catch (error) {
     console.log(error);
@@ -113,7 +126,9 @@ export const updateUser = async (req, res) => {
   }
 
   try {
-    const query = UserModel.findOne({ user: body.user, status }).skip(offset).limit(limit);
+    const query = UserModel.findOne({ user: body.user, status })
+      .skip(offset)
+      .limit(limit);
     const data_ = await query.exec();
 
     if (data_ !== null) {
