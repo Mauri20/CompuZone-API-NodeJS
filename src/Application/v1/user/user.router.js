@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser,
   deleteUserPermantly,
+  login,
 } from './user.controller';
 
 const router = express.Router();
@@ -13,6 +14,8 @@ const router = express.Router();
 router.get('/', getAllUsers);
 
 router.post('/create', createUser);
+
+router.post('/login', login);
 
 router.put('/:idUser', updateUser);
 
