@@ -2,9 +2,10 @@ import ShoeModelModel from './shoeModel.model';
 
 export const getAllShoeModels = async (req, res) => {
   const { offset, limit } = req.params;
+  const { status = 'active' } = req.query;
 
   try {
-    const query = ShoeModelModel.find({})
+    const query = ShoeModelModel.find({ status })
       .skip(offset)
       .limit(limit)
       .populate('trademark', { trademarkName: 1, _id: 0 });

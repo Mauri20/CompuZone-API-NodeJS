@@ -2,9 +2,10 @@ import ShoeModel from './shoe.model';
 
 export const getAllShoes = async (req, res) => {
   const { offset, limit } = req.params;
+  const { status = 'active' } = req.query;
 
   try {
-    const query = ShoeModel.find({})
+    const query = ShoeModel.find({ status })
       .skip(offset)
       .limit(limit)
       .populate('category', { categorieName: 1 })

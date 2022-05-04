@@ -2,9 +2,10 @@ import UserModel from './user.model';
 
 export const getAllUsers = async (req, res) => {
   const { offset, limit } = req.params;
+  const { status = 'active' } = req.query;
 
   try {
-    const query = UserModel.find({}).skip(offset).limit(limit);
+    const query = UserModel.find({ status }).skip(offset).limit(limit);
 
     const data = await query.exec();
     return res.status(200).json(data);

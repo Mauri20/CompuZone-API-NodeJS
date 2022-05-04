@@ -2,9 +2,10 @@ import TrademarkModel from './trademark.model';
 
 export const getAllTrademarks = async (req, res) => {
   const { offset, limit } = req.params;
+  const { status = 'active' } = req.query;
 
   try {
-    const query = TrademarkModel.find({}).skip(offset).limit(limit);
+    const query = TrademarkModel.find({ status }).skip(offset).limit(limit);
 
     const data = await query.exec();
     return res.status(200).json(data);
