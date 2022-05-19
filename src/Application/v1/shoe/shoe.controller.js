@@ -108,14 +108,13 @@ export const deleteShoe = async (req, res) => {
   }
 };
 
-export const deleteTrademarkPermantly = async (req, res) => {
+export const deleteShoePermantly = async (req, res) => {
   const { idShoe } = req.params;
 
   try {
-    const data = await ShoeModel.deleteOne({ _id: idShoe });
+    await ShoeModel.deleteOne({ _id: idShoe });
 
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

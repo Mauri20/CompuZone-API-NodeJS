@@ -86,12 +86,10 @@ export const login = async (req, res) => {
             } else if (data.userType === '0') {
               rolType = 'common';
             }
-            return res
-              .status(200)
-              .json({
-                message: 'The user has been found successfully.',
-                rol: rolType,
-              });
+            return res.status(200).json({
+              message: 'The user has been found successfully.',
+              rol: rolType,
+            });
           }
 
           return res
@@ -181,10 +179,9 @@ export const deleteUserPermantly = async (req, res) => {
   const { idUser } = req.params;
 
   try {
-    const data = await UserModel.deleteOne({ _id: idUser });
+    await UserModel.deleteOne({ _id: idUser });
 
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

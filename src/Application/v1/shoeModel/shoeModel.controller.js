@@ -64,7 +64,7 @@ export const updateShoeModel = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt update the Trademark.',
+      message: '> It couldnt update the Model.',
     });
   }
 };
@@ -94,10 +94,9 @@ export const deleteShoeModelPermantly = async (req, res) => {
   const { idShoeModel } = req.params;
 
   try {
-    const data = await ShoeModelModel.deleteOne({ _id: idShoeModel });
+    await ShoeModelModel.deleteOne({ _id: idShoeModel });
 
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

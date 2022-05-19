@@ -28,7 +28,7 @@ const schema = new Schema(
     },
     status: {
       type: String,
-      enum: ['active', 'inactive', 'deleted'],
+      enum: ['active', 'inactive'],
       default: 'active',
     },
     created_at: {

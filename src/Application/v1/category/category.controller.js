@@ -22,7 +22,7 @@ export const createCategorie = async (req, res) => {
 
   if (!body) {
     return res.status(400).json({
-      message: '> Please complete all files required',
+      message: '> Please complete all fields required',
     });
   }
 
@@ -46,7 +46,7 @@ export const updateCategorie = async (req, res) => {
 
   if (!body) {
     return res.status(400).json({
-      message: 'Please complete all files required',
+      message: 'Please complete all fields required',
     });
   }
 
@@ -93,10 +93,8 @@ export const deleteCategoriePermantly = async (req, res) => {
   const { idCategorie } = params;
 
   try {
-    const data = await CategorieModel.deleteOne({ _id: idCategorie });
-
+    await CategorieModel.deleteOne({ _id: idCategorie });
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

@@ -91,10 +91,9 @@ export const deleteTrademarkPermantly = async (req, res) => {
   const { idTrademark } = req.params;
 
   try {
-    const data = await TrademarkModel.deleteOne({ _id: idTrademark });
+    await TrademarkModel.deleteOne({ _id: idTrademark });
 
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

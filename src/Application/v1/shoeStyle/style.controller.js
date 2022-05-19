@@ -91,10 +91,9 @@ export const deleteStylePermantly = async (req, res) => {
   const { idStyle } = req.params;
 
   try {
-    const data = await StyleModel.deleteOne({ _id: idStyle });
+    await StyleModel.deleteOne({ _id: idStyle });
 
     return res.status(200).json({
-      ...data,
       status: 'deleted',
     });
   } catch (error) {

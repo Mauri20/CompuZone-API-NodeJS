@@ -5,7 +5,7 @@ import {
   createShoe,
   updateShoe,
   deleteShoe,
-  deleteTrademarkPermantly,
+  deleteShoePermantly,
 } from './shoe.controller';
 
 const router = express.Router();
@@ -17,6 +17,6 @@ router.post('/create', createShoe);
 router.put('/:idShoe', updateShoe);
 router.delete('/:idShoe', deleteShoe);
 
-router.delete('/delete/:idShoe', deleteTrademarkPermantly);
+router.delete('/delete/:idShoe', deleteShoePermantly);
 
 export default router;
