@@ -1,22 +1,31 @@
 import ShoeModel from './shoe.model';
 
 export const getAllShoes = async (req, res) => {
-  const { offset, limit } = req.params;
+  const limit = parseInt(req.query.limit, 10) || 5;
+  const page = parseInt(req.query.page, 10) || 1;
   const { status = 'active' } = req.query;
 
-  try {
-    const query = ShoeModel.find({ status })
-      .skip(offset)
-      .limit(limit)
-      .populate('category', { categorieName: 1 })
-      .populate({
-        path: 'model',
-        select: 'modelName',
-        populate: { path: 'trademark', select: 'trademarkName' },
-      })
-      .populate('style', { styleName: 1 });
+  const myCustomLabels = {
+    totalDocs: 'itemCount',
+    docs: 'docs',
+    limit: 'perPage',
+    page: 'currentPage',
+    nextPage: 'next',
+    prevPage: 'prev',
+    totalPages: 'pageCount',
+    pagingCounter: 'slNo',
 
-    const data = await query.exec();
+  };
+
+  const options = {
+    page,
+    limit,
+    populate: [{ path: 'category', select: 'categorieName' }, { path: 'model', select: 'modelName', populate: { path: 'trademark', select: 'trademarkName' } }, { path: 'style', select: 'styleName' }],
+    customLabels: myCustomLabels,
+  };
+
+  try {
+    const data = await ShoeModel.paginate({ status }, options);
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({
