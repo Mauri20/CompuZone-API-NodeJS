@@ -1,12 +1,19 @@
 import mongoose from 'mongoose';
 import getModelName from 'Utils/getModelName';
 
+// importamos el modulo de mongoosePaginate
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const { Schema } = mongoose;
 const { singularName, pluralName } = getModelName('trademarks');
 
 const schema = new Schema(
   {
     trademarkName: {
+      type: String,
+      required: true,
+    },
+    urlImage: {
       type: String,
       required: true,
     },
@@ -35,6 +42,9 @@ schema.set('toJSON', {
     delete ret._id;
   },
 });
+
+// agregamos el plugin de mongoosePaginate
+schema.plugin(mongoosePaginate);
 
 // rename name Example to singular Model
 // eslint-disable-next-line operator-linebreak
