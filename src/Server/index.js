@@ -1,5 +1,5 @@
 import express from 'express';
-
+import cors from 'cors';
 import getConfig from 'config';
 import { initializeDB } from './db';
 
@@ -11,6 +11,9 @@ const app = express();
 const initializeServer = async (routes) => {
   // initialize DB
   await initializeDB();
+
+  // use cors
+  app.use(cors());
 
   // json parse
   app.use(express.json());
