@@ -5,10 +5,7 @@ export const getAllShoeModels = async (req, res) => {
   const { status = 'active' } = req.query;
 
   try {
-    const query = ShoeModelModel.find({ status })
-      .skip(offset)
-      .limit(limit)
-      .populate('trademark', { trademarkName: 1, _id: 0 });
+    const query = ShoeModelModel.find({ status }).skip(offset).limit(limit);
 
     const data = await query.exec();
     return res.status(200).json(data);
@@ -31,7 +28,6 @@ export const createShoeModel = async (req, res) => {
   try {
     const data = await ShoeModelModel.create({
       modelName: body.modelName,
-      trademark: body.trademark,
     });
     return res.status(200).json(data);
   } catch (error) {
@@ -57,7 +53,6 @@ export const updateShoeModel = async (req, res) => {
       { _id: idShoeModel },
       {
         modelName: body.modelName,
-        trademark: body.trademark,
       }
     );
     return res.status(200).json(Object.assign(data, body));

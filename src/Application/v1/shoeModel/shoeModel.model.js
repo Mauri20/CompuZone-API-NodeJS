@@ -19,10 +19,6 @@ const schema = new Schema(
       type: Date,
       default: Date.now,
     },
-    trademark: {
-      type: Schema.Types.ObjectId,
-      ref: 'trademarks',
-    },
   },
   {
     versionKey: false,

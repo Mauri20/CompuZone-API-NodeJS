@@ -29,6 +29,10 @@ const schema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'categories',
     },
+    trademark: {
+      type: Schema.Types.ObjectId,
+      ref: 'trademarks',
+    },
     model: {
       type: Schema.Types.ObjectId,
       ref: 'models',

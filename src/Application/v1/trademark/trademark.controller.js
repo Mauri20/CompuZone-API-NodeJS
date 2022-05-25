@@ -14,7 +14,6 @@ export const getAllTrademarks = async (req, res) => {
     prevPage: 'prev',
     totalPages: 'pageCount',
     pagingCounter: 'slNo',
-
   };
 
   const options = {
