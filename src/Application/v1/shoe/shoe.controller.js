@@ -1,7 +1,7 @@
 import ShoeModel from './shoe.model';
 
 export const getAllShoes = async (req, res) => {
-  const limit = parseInt(req.query.limit, 10) || 5;
+  const limit = parseInt(req.query.limit, 10) || 6;
   const page = parseInt(req.query.page, 10) || 1;
   const { status = 'active' } = req.query;
 
@@ -43,7 +43,7 @@ export const getAllShoes = async (req, res) => {
 };
 
 export const getShoesByFilter = async (req, res) => {
-  const limit = parseInt(req.query.limit, 10) || 5;
+  const limit = parseInt(req.query.limit, 10) || 6;
   const page = parseInt(req.query.page, 10) || 1;
   const { trademarkId } = req.query;
   const categoryId = req.query.categoryId || 0;
