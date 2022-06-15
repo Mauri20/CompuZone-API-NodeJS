@@ -201,20 +201,3 @@ export const deleteShoe = async (req, res) => {
     });
   }
 };
-
-export const deleteShoePermantly = async (req, res) => {
-  const { idShoe } = req.params;
-
-  try {
-    await ShoeModel.deleteOne({ _id: idShoe });
-
-    return res.status(200).json({
-      status: 'deleted',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt delete this Shoe.',
-    });
-  }
-};

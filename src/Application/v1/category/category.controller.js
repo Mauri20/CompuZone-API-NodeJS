@@ -87,20 +87,3 @@ export const deleteCategorie = async (req, res) => {
     });
   }
 };
-
-export const deleteCategoriePermantly = async (req, res) => {
-  const { params } = req;
-  const { idCategorie } = params;
-
-  try {
-    await CategorieModel.deleteOne({ _id: idCategorie });
-    return res.status(200).json({
-      status: 'deleted',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt delete this category.',
-    });
-  }
-};

@@ -162,27 +162,9 @@ export const deleteUser = async (req, res) => {
       { _id: idUser },
       { status: 'inactive' }
     );
-
     return res.status(200).json({
       ...data,
       status: 'inactive',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt delete this User.',
-    });
-  }
-};
-
-export const deleteUserPermantly = async (req, res) => {
-  const { idUser } = req.params;
-
-  try {
-    await UserModel.deleteOne({ _id: idUser });
-
-    return res.status(200).json({
-      status: 'deleted',
     });
   } catch (error) {
     return res.status(500).json({

@@ -65,7 +65,6 @@ export const updateStyle = async (req, res) => {
     });
   }
 };
-
 export const deleteStyle = async (req, res) => {
   const { idStyle } = req.params;
 
@@ -78,23 +77,6 @@ export const deleteStyle = async (req, res) => {
     return res.status(200).json({
       ...data,
       status: 'inactive',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt delete this style.',
-    });
-  }
-};
-
-export const deleteStylePermantly = async (req, res) => {
-  const { idStyle } = req.params;
-
-  try {
-    await StyleModel.deleteOne({ _id: idStyle });
-
-    return res.status(200).json({
-      status: 'deleted',
     });
   } catch (error) {
     return res.status(500).json({
