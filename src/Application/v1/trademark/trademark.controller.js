@@ -92,27 +92,9 @@ export const deleteTrademark = async (req, res) => {
       { _id: idTrademark },
       { status: 'inactive' }
     );
-
     return res.status(200).json({
       ...data,
       status: 'inactive',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt delete this Trademark.',
-    });
-  }
-};
-
-export const deleteTrademarkPermantly = async (req, res) => {
-  const { idTrademark } = req.params;
-
-  try {
-    await TrademarkModel.deleteOne({ _id: idTrademark });
-
-    return res.status(200).json({
-      status: 'deleted',
     });
   } catch (error) {
     return res.status(500).json({
