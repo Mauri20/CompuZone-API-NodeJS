@@ -5,7 +5,6 @@ import {
   createUser,
   updateUser,
   deleteUser,
-  deleteUserPermantly,
   login,
 } from './user.controller';
 
@@ -20,7 +19,5 @@ router.post('/login', login);
 router.put('/:idUser', updateUser);
 
 router.delete('/:idUser', deleteUser);
-
-router.delete('/delete/:idUser', deleteUserPermantly);
 
 export default router;
