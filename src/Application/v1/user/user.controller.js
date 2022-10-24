@@ -43,6 +43,7 @@ export const createUser = async (req, res) => {
     const data = await UserModel.create({
       userName: body.userName,
       phone: body.phone,
+      address: body.address,
       user: body.user,
       password: bcrypt.hashSync(body.password, 12),
       userType: body.userType,
