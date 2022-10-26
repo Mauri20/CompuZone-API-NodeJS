@@ -49,6 +49,7 @@ export const getShoesByFilter = async (req, res) => {
   const categoryId = req.query.categoryId || 0;
   const styleId = req.query.styleId || 0;
   const { status = 'active' } = req.query;
+  const { id } = req.query;
 
   const myCustomLabels = {
     totalDocs: 'itemCount',
@@ -105,6 +106,12 @@ export const getShoesByFilter = async (req, res) => {
     filterParam = {
       status,
       trademark: { _id: trademarkId },
+    };
+  }
+  if (id) {
+    filterParam = {
+      status,
+      _id: id,
     };
   }
   try {
