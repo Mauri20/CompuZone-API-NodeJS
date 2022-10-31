@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import UserModel from './user.model';
 
 const bcrypt = require('bcryptjs');
@@ -48,7 +49,7 @@ export const createUser = async (req, res) => {
       password: bcrypt.hashSync(body.password, 12),
       userType: body.userType,
     });
-    return res.status(200).json(data);
+    return res.status(200).json({ data, status: 'ok' });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -63,8 +64,7 @@ export const login = async (req, res) => {
   const { body } = req;
   const { offset, limit } = req.params;
   const { status = 'active' } = req.query;
-
-  if (!body) {
+  if (!body || body === '{}') {
     return res.status(400).json({
       message: 'Please complete all fields required.',
     });
@@ -81,6 +81,13 @@ export const login = async (req, res) => {
           console.log('> There are some issues on:', err);
         } else {
           if (match) {
+            const token = jwt.sign(
+              { data },
+              'zelig', // 'secret' === 'zelig'
+              {
+                expiresIn: '1h', // expires in 1 hour
+              }
+            );
             let rolType = '';
             if (data.userType === '1') {
               rolType = 'root';
@@ -90,6 +97,8 @@ export const login = async (req, res) => {
             return res.status(200).json({
               message: 'The user has been found successfully.',
               rol: rolType,
+              token,
+              status: 'ok', // eslint-disable-line comma-dangle
             });
           }
 
@@ -101,7 +110,7 @@ export const login = async (req, res) => {
     } else {
       return res
         .status(400)
-        .json({ message: 'This user doesnt exist, probably has been deleted' });
+        .json({ message: 'This user doesnt exist, or maybe has been deleted' });
     }
   } catch (error) {
     console.log(error);
