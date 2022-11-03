@@ -21,9 +21,15 @@ const schema = new Schema(
       type: String,
       required: true,
     },
-    url: {
-      type: String,
-      required: true,
+    image: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      secure_url: {
+        type: String,
+        required: true,
+      },
     },
     category: {
       type: Schema.Types.ObjectId,
@@ -34,8 +40,8 @@ const schema = new Schema(
       ref: 'trademarks',
     },
     model: {
-      type: Schema.Types.ObjectId,
-      ref: 'models',
+      type: String,
+      required: true,
     },
     style: {
       type: Schema.Types.ObjectId,

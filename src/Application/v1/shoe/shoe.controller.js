@@ -1,4 +1,6 @@
+import fs from 'fs-extra';
 import ShoeModel from './shoe.model';
+import { uploadFile } from '../../../Utils/cloudFile';
 
 export const getAllShoes = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 6;
@@ -126,25 +128,33 @@ export const getShoesByFilter = async (req, res) => {
 };
 
 export const createShoe = async (req, res) => {
-  const { body } = req;
+  const { size, color, price, category, trademark, model, style } = req.body;
+  const { files } = req;
 
-  if (!body) {
+  if (!files) {
     return res.status(400).json({
-      message: '> Please complete all fields required',
+      message: 'Not file uploaded',
     });
   }
 
   try {
+    let image = {};
+    const result = await uploadFile(req.files.image.tempFilePath, 'shoes');
+    image = {
+      public_id: result.public_id,
+      secure_url: result.secure_url,
+    };
     const data = await ShoeModel.create({
-      size: body.size,
-      color: body.color,
-      price: body.price,
-      url: body.url,
-      category: body.category,
-      trademark: body.trademark,
-      model: body.model,
-      style: body.style,
+      size,
+      color,
+      price,
+      image,
+      category,
+      trademark,
+      model,
+      style,
     });
+    fs.unlinkSync(req.files.image.tempFilePath);
     return res.status(200).json(data);
   } catch (error) {
     console.log(error);
