@@ -1,4 +1,5 @@
 import express from 'express';
+import fileUpload from 'express-fileupload';
 
 import {
   getAllShoes,
@@ -14,7 +15,14 @@ router.get('/', getAllShoes);
 
 router.get('/filter', getShoesByFilter);
 
-router.post('/create', createShoe);
+router.post(
+  '/create',
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: './uploads',
+  }),
+  createShoe
+);
 
 router.put('/:idShoe', updateShoe);
 

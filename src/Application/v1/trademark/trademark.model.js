@@ -13,9 +13,15 @@ const schema = new Schema(
       type: String,
       required: true,
     },
-    urlImage: {
-      type: String,
-      required: true,
+    image: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      secure_url: {
+        type: String,
+        required: true,
+      },
     },
     status: {
       type: String,
