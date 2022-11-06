@@ -27,7 +27,8 @@ export const createUser = async (req, res) => {
 
   if (!body) {
     return res.status(400).json({
-      message: '> Please complete all fields required',
+      // message: '> Please complete all fields required',
+      message: '> Por favor complete todos los campos requeridos',
     });
   }
   try {
@@ -38,7 +39,8 @@ export const createUser = async (req, res) => {
 
     if (data_ !== null) {
       return res.status(400).json({
-        message: 'This user has already on use.',
+        // message: 'This user has already on use.',
+        message: 'Este usuario ya esta en uso.',
       });
     }
     const data = await UserModel.create({
@@ -54,7 +56,8 @@ export const createUser = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt create the User.',
+      // message: '> It couldnt create the User.',
+      message: '> No se pudo crear el usuario.',
     });
   }
 };

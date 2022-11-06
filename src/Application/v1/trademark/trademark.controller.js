@@ -1,6 +1,8 @@
 import fs from 'fs-extra';
 import TrademarkModel from './trademark.model';
-import { uploadFile, deleteFile } from '../../../Utils/cloudFile';
+import { uploadFile } from '../../../Utils/cloudFile';
+
+// import { uploadFile, deleteFile } from '../../../Utils/cloudFile';
 
 export const getAllTrademarks = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 6;
@@ -67,52 +69,52 @@ export const createTrademark = async (req, res) => {
   }
 };
 
-export const updateTrademark = async (req, res) => {
-  const { idTrademark } = req.params;
-  const { trademarkName } = req.body;
+// export const updateTrademark = async (req, res) => {
+//   const { idTrademark } = req.params;
+//   const { trademarkName } = req.body;
 
-  if (!trademarkName) {
-    return res.status(400).json({
-      message: 'Please complete all fields required',
-    });
-  }
+//   if (!trademarkName) {
+//     return res.status(400).json({
+//       message: 'Please complete all fields required',
+//     });
+//   }
 
-  if (!req.files?.image) {
-    const data = await TrademarkModel.findOneAndUpdate(
-      { _id: idTrademark },
-      {
-        trademarkName,
-      }
-    );
-    return res.status(200).json(data);
-  }
+//   if (!req.files?.image) {
+//     const data = await TrademarkModel.findOneAndUpdate(
+//       { _id: idTrademark },
+//       {
+//         trademarkName,
+//       }
+//     );
+//     return res.status(200).json(data);
+//   }
 
-  try {
-    let image = {};
-    const actualData = await TrademarkModel.findById(idTrademark);
-    await deleteFile(actualData.image.public_id);
-    const result = await uploadFile(req.files.image.tempFilePath, 'trademarks');
-    image = {
-      public_id: result.public_id,
-      secure_url: result.secure_url,
-    };
-    await fs.unlink(req.files.image.tempFilePath);
+//   try {
+//     let image = {};
+//     const actualData = await TrademarkModel.findById(idTrademark);
+//     await deleteFile(actualData.image.public_id);
+//     const result = await uploadFile(req.files.image.tempFilePath, 'trademarks');
+//     image = {
+//       public_id: result.public_id,
+//       secure_url: result.secure_url,
+//     };
+//     await fs.unlink(req.files.image.tempFilePath);
 
-    const data = await TrademarkModel.findOneAndUpdate(
-      { _id: idTrademark },
-      {
-        trademarkName,
-        image,
-      }
-    );
-    return res.status(200).json(Object.assign(data, body));
-  } catch (error) {
-    return res.status(500).json({
-      code: 500,
-      message: '> It couldnt update the Trademark.',
-    });
-  }
-};
+//     const data = await TrademarkModel.findOneAndUpdate(
+//       { _id: idTrademark },
+//       {
+//         trademarkName,
+//         image,
+//       }
+//     );
+//     return res.status(200).json(Object.assign(data, body));
+//   } catch (error) {
+//     return res.status(500).json({
+//       code: 500,
+//       message: '> It couldnt update the Trademark.',
+//     });
+//   }
+// };
 
 export const deleteTrademark = async (req, res) => {
   const { idTrademark } = req.params;

@@ -4,9 +4,15 @@ import fileUpload from 'express-fileupload';
 import {
   getAllTrademarks,
   createTrademark,
-  updateTrademark,
   deleteTrademark,
 } from './trademark.controller';
+
+// import {
+//   getAllTrademarks,
+//   createTrademark,
+//   updateTrademark,
+//   deleteTrademark,
+// } from './trademark.controller';
 
 const router = express.Router();
 
@@ -21,14 +27,14 @@ router.post(
   createTrademark
 );
 
-router.put(
-  '/:idTrademark',
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: './uploads',
-  }),
-  updateTrademark
-);
+// router.put(
+//   '/:idTrademark',
+//   fileUpload({
+//     useTempFiles: true,
+//     tempFileDir: './uploads',
+//   }),
+//   updateTrademark
+// );
 
 router.delete('/:idTrademark', deleteTrademark);
 
