@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import fs from 'fs-extra';
 import TrademarkModel from './trademark.model';
 import { uploadFile } from '../../../Utils/cloudFile';

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { v2 as cloudinary } from 'cloudinary';
 
 import getConfig from 'config';

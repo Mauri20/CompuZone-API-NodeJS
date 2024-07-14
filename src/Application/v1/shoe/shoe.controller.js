@@ -1,3 +1,6 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable object-curly-newline */
+/* eslint-disable linebreak-style */
 import fs from 'fs-extra';
 import ShoeModel from './shoe.model';
 import { uploadFile } from '../../../Utils/cloudFile';
