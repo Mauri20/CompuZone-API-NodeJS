@@ -14,3 +14,5 @@ y otras más herramientas de desarrollo actuales y eficientes.
 ## ⚠️Other Information
 
 La API estará bajo desarrollo en los próximos meses, por lo cuál no se garantiza un funcionamiento 100% eficiente, puedes crear un commit siempre y cuando sean aprobados por los colaboradores del proyecto, ¡Diviertete programando!
+
+### Created by: **Andres Córdova**
