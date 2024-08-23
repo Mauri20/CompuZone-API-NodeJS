@@ -2,7 +2,7 @@ import express from 'express';
 import categorieRoutes from './category/category.route';
 import styleRoutes from './shoeStyle/style.router';
 import trademarkRoutes from './trademark/trademark.router';
-import shoeRoutes from './shoe/shoe.router';
+import shoeRoutes from './shoe/computers.router';
 import userRoutes from './user/user.router';
 
 const router = express.Router();

@@ -2,7 +2,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable linebreak-style */
 import fs from 'fs-extra';
-import ShoeModel from './shoe.model';
+import ShoeModel from './computers.model';
 import { uploadFile } from '../../../Utils/cloudFile';
 
 export const getAllShoes = async (req, res) => {

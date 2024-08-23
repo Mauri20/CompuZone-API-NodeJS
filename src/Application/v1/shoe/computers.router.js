@@ -7,7 +7,7 @@ import {
   createShoe,
   updateShoe,
   deleteShoe,
-} from './shoe.controller';
+} from './computers.controller';
 
 const router = express.Router();
 

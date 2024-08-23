@@ -5,7 +5,7 @@ import getModelName from 'Utils/getModelName';
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const { Schema } = mongoose;
-const { singularName, pluralName } = getModelName('shoes');
+const { singularName, pluralName } = getModelName('computers');
 
 const schema = new Schema(
   {
