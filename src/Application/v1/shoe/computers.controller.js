@@ -6,7 +6,7 @@ import ShoeModel from './computers.model';
 import { uploadFile } from '../../../Utils/cloudFile';
 
 export const getAllShoes = async (req, res) => {
-  const limit = parseInt(req.query.limit, 10) || 6;
+  const limit =  8;
   const page = parseInt(req.query.page, 10) || 1;
   const { status = 'active' } = req.query;
 
@@ -42,13 +42,13 @@ export const getAllShoes = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt get all Shoes',
+      message: '> It couldnt get all Computers',
     });
   }
 };
 
 export const getShoesByFilter = async (req, res) => {
-  const limit = parseInt(req.query.limit, 10) || 6;
+  const limit = 8;
   const page = parseInt(req.query.page, 10) || 1;
   const { trademarkId } = req.query;
   const categoryId = req.query.categoryId || 0;
@@ -125,7 +125,7 @@ export const getShoesByFilter = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt get all Shoes',
+      message: '> It couldnt get all Computers',
     });
   }
 };
@@ -134,9 +134,11 @@ export const createShoe = async (req, res) => {
   const { size, color, price, category, trademark, model, style } = req.body;
   const { files } = req;
 
+  console.log(req.body);
+
   if (!files) {
     return res.status(400).json({
-      message: 'Not file uploaded',
+      message: 'Not file uploaded' 
     });
   }
 
@@ -217,7 +219,36 @@ export const deleteShoe = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      message: '> It couldnt delete this Shoe.',
+      message: '> It couldnt delete this Computer.',
     });
   }
 };
+
+export const addData = async (req, res) => {
+  try {
+    const pipeline = [
+      { $match: {} },  // Selecciona todos los documentos
+      { 
+        $project: { 
+          trademark: '66c95d2d7cca5e65d0589717',  // Incluye campo1
+          // Puedes agregar más campos según sea necesario
+        }
+      }
+    ];
+
+    // Realiza la agregación y almacena los resultados
+    const resultados = await ShoeModel.aggregate(pipeline);
+
+    // Inserta los resultados en una nueva colección llamada 'destino'
+    if (resultados.length > 0) {
+      await ShoeModel.insertMany(resultados);
+    }
+
+    res.status(200).json({ message: 'Documentos copiados con éxito', count: resultados.length });
+  } catch (error) {
+    console.error('Error al copiar documentos:', error);
+    res.status(500).json({ message: 'Error al copiar documentos', error });
+  }
+};
+
+

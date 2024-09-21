@@ -7,6 +7,7 @@ import {
   createShoe,
   updateShoe,
   deleteShoe,
+  addData,
 } from './computers.controller';
 
 const router = express.Router();
@@ -23,6 +24,8 @@ router.post(
   }),
   createShoe
 );
+
+router.post('/adddata',addData);
 
 router.put('/:idShoe', updateShoe);
 
